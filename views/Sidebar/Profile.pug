@@ -1,0 +1,54 @@
+// 프로필, 깃허브 버튼
+// 블로그 이름 (블로그 링크로 이동)
+a.brand(href="[##_blog_link_##]" class="block text-center no-underline")
+  h1(class="text-white text-lg font-bold leading-none") [##_title_##]
+
+// 프로필 이미지
+figure(class="mt-4 flex flex-col items-center gap-2")
+  img(
+    src="[##_image_##]"
+    alt="[##_blogger_##]"
+    width="96" height="96"
+    class="rounded-full object-cover w-24 h-24 border border-white/20")
+
+// 블로거 이름 + 버튼을 한 덩어리로 묶기
+div(class="mt-1 flex flex-col items-center gap-3")
+  // 블로거 이름
+  figcaption(class="text-white/90 text-[18px] leading-none") [##_blogger_##]
+
+  // GitHub 버튼(초기 숨김) — 작고 동그랗게
+  a#githubBtn.hidden(
+    href="#"
+    target="_blank" rel="noopener"
+    class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white text-[#4E4D4D] text-[15px] font-medium no-underline shadow-sm duration-200 hover:opacity-90 leading-none"
+    aria-label="GitHub")
+    i(class="fa-brands fa-github text-current text-[15px] leading-none")
+    span.leading-none GitHub
+
+// 2) 링크 수집기: 관리자 > 나의 링크를 DOM에 숨겨 뿌림
+ul#_links.hidden
+  s_link_rep
+    li
+      a(href="[##_link_url_##]" data-name="[##_link_site_##]") [##_link_site_##]
+
+// 3) 스크립트: 'GitHub' 이름 또는 github.com 주소를 찾아 href 주입
+script.
+  document.addEventListener('DOMContentLoaded', function () {
+    var items = document.querySelectorAll('#_links a');
+    var found = '';
+    items.forEach(function (a) {
+      var name = (a.getAttribute('data-name') || a.textContent || '').trim();
+      var href = a.getAttribute('href') || '';
+      if (/^github$/i.test(name) || /github\.com/i.test(href)) {
+        if (!found) found = href; // 최초 매칭만 사용
+      }
+    });
+    var btn = document.getElementById('githubBtn');
+    if (found && btn) {
+      btn.href = found;
+      btn.classList.remove('hidden');   // 보이기
+    } else {
+      btn?.remove();                    // 못 찾으면 버튼 제거(안 뜸)
+    }
+    document.getElementById('_links')?.remove(); // 수집기 정리
+  });
