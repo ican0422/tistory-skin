@@ -1,0 +1,18 @@
+//- 다크 모드 버튼 (노브만 애니메이션)
+div#dark(x-data='{ "on": false, "w": 50, "h": 20, "k": 16, "p": 2 }')
+  .flex.items-center.w-full.py-2
+    h2(class="m-0 text-white text-[16px] font-bold tracking-wide mr-[130px]") 다크모드
+    button(
+      type="button"
+      role="switch"
+      :aria-checked="on"
+      @click="on = !on"
+      class="relative inline-flex items-center transition-colors duration-200"
+      :style="{ width: w + 'px', height: h + 'px', borderRadius: '9999px', background: '#6b7280' }"
+      aria-label="다크 모드(노브만 데모)"
+    )
+      span(
+        aria-hidden="true"
+        class="absolute rounded-full bg-white transition-all duration-200 ease-out"
+        :style="{ width: k + 'px', height: k + 'px', top: p + 'px', left: (on ? (w - k - p) : p) + 'px' }"
+      )
