@@ -5,7 +5,7 @@ const ESLintPlugin = require('eslint-webpack-plugin')
  * @see https://tidory.github.io/docs/configuration/
  */
 module.exports = {
-  ts_session: '4d5e29aadf509d40510c69756ea64f3584c70d78',
+  ts_session: 'c104f195f22bd01f18fefae60253e8828a11f8b4',
   url: 'https://hyun-my-it-blog.tistory.com',
 
   preview: {

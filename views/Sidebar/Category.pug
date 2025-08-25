@@ -1,0 +1,53 @@
+// 카테고리
+el#category
+  .tt_category
+    | [##_category_list_##]
+
+style.
+    /* 1) 루트 '분류 전체보기' 숨김 */
+    #category .tt_category .link_tit { display: none !important; }
+    #category .tt_category > ul > li:first-child > a,
+    #category .tt_category > ul > li:first-child > .c_cnt { display: none !important; }
+
+    /* 2) 정렬/색상 */
+    #category { width: 100% !important; }
+    #category, #category .tt_category { text-align: left !important; }
+    #category .tt_category { color: #fff; }
+    #category .tt_category a { color: inherit; text-decoration: none; }
+    #category .tt_category .c_cnt,
+    #category .tt_category em:last-child { color: #aaa; font-style: normal; }
+
+    /* 3) 리스트 기본 불릿 제거 */
+    #category .tt_category ul { margin: 0; padding: 0; list-style: none; }
+
+    /* override: 서브 카테고리 들여쓰기/라인 강화 */
+    #category .tt_category .sub_category_list{
+    border-left: 2px solid rgba(0,0,0,.35) !important; /* 사진처럼 어두운 회색 라인 */
+    padding-left: 0.5rem !important;
+    margin: .25rem 0 0 !important;
+    margin-left: 20px !important;
+    margin-bottom: 4px !important;
+    }
+
+    /* 라인과 텍스트 사이 간격 확보 */
+    #category .tt_category .sub_category_list > li{
+    display:flex; align-items:center; gap:.5rem;
+    padding: .25rem 0 .25rem .5rem; /* 왼쪽 여백 추가로 텍스트가 라인에서 떨어지게 */
+    }
+
+    /* <a> 안에 c_cnt가 있을 때: 카운트를 오른쪽 끝으로 */
+    #category .tt_category li > a.link_item,
+    #category .tt_category li > a.link_sub_item{
+    display: flex;               /* 한 줄 배치 */
+    align-items: center;
+    width: 100%;                 /* li 폭을 꽉 채움 */
+    white-space: nowrap;         /* 한 줄 유지(말줄임 필요하면 overflow:hidden; 추가) */
+    }
+
+    #category .tt_category li > a.link_item .c_cnt,
+    #category .tt_category li > a.link_sub_item .c_cnt{
+    margin-left: auto;           /* 왼쪽 여백을 최대화 → 오른쪽으로 밀림 */
+    text-align: right;
+    padding-left: .5rem;         /* 제목과 간격 */
+    flex: 0 0 auto;              /* 숫자 폭 유지 */
+    }
