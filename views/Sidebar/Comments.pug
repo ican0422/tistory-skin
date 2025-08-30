@@ -1,0 +1,12 @@
+// 사이드바 최신 댓글
+section#recent-comments(class="self-start")
+  h2.tit(class="text-white") 최신 댓글
+  ul.comments
+    s_rctrp_rep
+      li.comment
+        a.comment-button(
+          href="[##_rctrp_rep_link_##]"
+          class="block w-full rounded-lg px-1 py-1 transition hover:bg-[#5A5959]/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+        )
+          span.nick(class="block text-white") [##_rctrp_rep_name_##]
+          span.desc(class="block text-[13px] text-[#9E9EA7]") [##_rctrp_rep_desc_##]
